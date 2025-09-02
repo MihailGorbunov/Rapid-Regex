@@ -1,0 +1,19 @@
+networks:
+  bridge:
+    driver: bridge    
+
+services:
+
+  xray_custom:
+    networks:
+      - bridge
+    build: 
+        context: xray_custom/.
+    container_name: xray_custom
+    environment:
+      - SNI=www.samsung.com
+      - USERCOUNT=4
+      - REGISTER_URL=http://host.docker.internal:5002/servers/RegisterRemoteServer
+    ports:
+      - "80:80"
+      - "443:443"
