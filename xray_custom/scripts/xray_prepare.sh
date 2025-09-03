@@ -11,9 +11,12 @@ rm /output/config.json
 cp config.json ./output/config.json
 
 touch ./output/env.txt
-# Derive NAME from hostname if not provided via env
-if [ -z "$NAME" ]; then
-NAME=$(hostname -s 2>/dev/null || hostname)
+# Prefer reading server name from mounted file; fallback to env NAME; then hostname
+if [ -f "/server_name.txt" ]; then
+    NAME=$(head -n 1 /server_name.txt | tr -d '\r')
+fi
+if [ -z "${NAME:-}" ]; then
+    NAME=$(hostname -s 2>/dev/null || hostname)
 fi
 
 echo $SNI >> ./output/env.txt

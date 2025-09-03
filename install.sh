@@ -17,4 +17,9 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo groupadd -f docker
 sudo usermod -aG docker $USER
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+HOSTNAME_SHORT=$(hostname -s 2>/dev/null || hostname)
+echo "$HOSTNAME_SHORT" > "$SCRIPT_DIR/server_name.txt"
+
+cd "$SCRIPT_DIR"
 sudo docker compose up --build -d
