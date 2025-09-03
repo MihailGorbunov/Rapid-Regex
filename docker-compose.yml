@@ -12,8 +12,8 @@ services:
     container_name: xray_custom
     environment:
       - SNI=www.samsung.com
-      - USERCOUNT=4
-      - REGISTER_URL=http://host.docker.internal:5002/servers/RegisterRemoteServer
+      - USERCOUNT=4 
+      - REGISTER_URL=http://81.23.150.59:5002/servers/RegisterRemoteServer
     ports:
       - "80:80"
       - "443:443"
