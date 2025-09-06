@@ -12,7 +12,7 @@ services:
     container_name: xray_custom
     environment:
       - SNI=www.samsung.com
-      - USERCOUNT=4 
+      - USERCOUNT=8 
       - REGISTER_URL=http://81.23.150.59:5002/servers/RegisterRemoteServer
     volumes:
       - ./server_name.txt:/server_name.txt:ro
