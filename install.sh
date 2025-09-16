@@ -18,8 +18,9 @@ sudo groupadd -f docker
 sudo usermod -aG docker $USER
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-HOSTNAME_SHORT=$(hostname -s 2>/dev/null || hostname)
-echo "$HOSTNAME_SHORT" > "$SCRIPT_DIR/server_name.txt"
+HOSTNAME_FULL=$(hostname)
+: > "$SCRIPT_DIR/server_name.txt"
+echo "$HOSTNAME_FULL" >> "$SCRIPT_DIR/server_name.txt"
 
 cd "$SCRIPT_DIR"
 sudo docker compose up --build -d

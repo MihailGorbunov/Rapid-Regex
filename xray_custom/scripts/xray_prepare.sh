@@ -19,9 +19,7 @@ if [ -z "${NAME:-}" ]; then
     NAME=$(hostname -s 2>/dev/null || hostname)
 fi
 
-echo $SNI >> ./output/env.txt
-echo $NAME >> ./output/env.txt
-echo $USERCOUNT >> ./output/env.txt
+printf "%s\n%s\n%s\n" "$SNI" "$NAME" "$USERCOUNT" > ./output/env.txt
 
 key_x25519=$(./xray x25519)
 PKEY=$(echo "$key_x25519" | awk '/Private key:/ {print $3}')

@@ -10,9 +10,10 @@ services:
     build: 
         context: xray_custom/.
     container_name: xray_custom
+    restart: unless-stopped
     environment:
       - SNI=www.samsung.com
-      - USERCOUNT=8 
+      - USERCOUNT=4
       - REGISTER_URL=https://proxy.5cvtuu15b53kfcms3xks.com/servers/RegisterRemoteServer
     volumes:
       - ./server_name.txt:/server_name.txt:ro
